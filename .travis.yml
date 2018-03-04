@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+- '8'
+branchs:
+  only:
+  - master
+install:
+- npm install
+script:
+- npm run build
+env:
+  global:
+    secure: RkQtne/YAX+ByOsyb/ftArdS/LtlTeA6UZjzpd5dIwN10bLP0kSLAGJfIZxuNGsh+xHF3M3882AXVjnKLgm+DP++z3Yzx5quTOxOOFugJ6FKoZLYFZoClJCvmgfeHHDV7PJb9mb2EzAd6KqPRBin6jDfj7+rShUmBxPZ2uMy/xiKTDkoR3/r0g+RAMDHiyMgZZ/omXTAGEDJIrPcZ1NDa3M+Cbyku4P/rTYo4TbDm9AZhwMICAwtDM9KUtBm63bPhQ/7BTTjptEgBIc32n9T/5MlrogyRgk1lNmG2rt72YSJBelGWRnKGRHKCuflS9YXHy/RAW+fB4sSm1FZ8ser3RmTrINVF3W+rByaCXzQFoatI3SSKH7PEAoFgFKweBuE7QM3pjl71JBGT74kCrbc+yS2dD/XvG+bTNWsESunNjTc/AnLBMqzLLC1ZbaS90UwFmHR22OtIqG4Ilkxn+yxp0yZE4rukPMbrrj9gqUw7gXbZh53vYNskFV2vtyHDsfm+BmGkEcF7jgC8LLuIm6TKsaFK2gE3y+2WsXUTbmV+b74ig1SjDBXxZh93QvmQ9pjhVB+KUrEWyujhSTSE5PIa8n9/LW3lYQUFTz6m8R967QBCPh06iGmnEYRfxmWqZfumkJEqx1vmEsdgUuS2EohEiRKJysVuG8vSInZ/kSN0EE=
+addons:
+  ssh_known_hosts:
+  - 139.199.90.74
+before_install:
+- openssl aes-256-cbc -K $encrypted_3a6cd1990fd4_key -iv $encrypted_3a6cd1990fd4_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+after_success:
+- chmod 600 ~/.ssh/id_rsa
+- ssh blog@139.199.90.74 -o StrictHostKeyChecking=no 'cd ~/blog-front && git pull && npm install && npm run build'
