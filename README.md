@@ -1,5 +1,5 @@
 # blog
-![travis](https://travis-ci.org/lzq4047/blog-front)
+![travis](https://api.travis-ci.org/lzq4047/blog-front.svg?branch=master)
 
 > Pratice eprojectise project: Blogct
 
